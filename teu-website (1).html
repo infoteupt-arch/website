@@ -58,60 +58,110 @@ body::after {
 ═══════════════════════════════════════════════ */
 nav {
   position: fixed; top:0; left:0; right:0; height: var(--nav-h);
-  background: rgba(10,29,18,0.96);
-  backdrop-filter: blur(18px);
-  border-bottom: 1px solid rgba(201,168,76,0.12);
+  background: rgba(10,29,18,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(201,168,76,0.13);
   display: flex; align-items:center; justify-content: space-between;
-  padding: 0 60px;
+  padding: 0 44px; gap:20px;
   z-index: 1000;
   transition: var(--trans);
 }
-nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5); }
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.55); }
 
 .nav-logo {
-  font-family:'Cinzel',serif; font-weight:700; font-size:1.75rem;
+  font-family:'Cinzel',serif; font-weight:700; font-size:1.7rem;
   color: var(--gold); letter-spacing:0.38em;
   cursor:pointer; text-decoration:none;
   text-shadow: 0 0 40px rgba(201,168,76,0.22);
-  transition: var(--trans);
+  transition: var(--trans); flex-shrink:0;
 }
 .nav-logo:hover { color: var(--gold-light); }
 
 .nav-links {
-  display:flex; gap:38px; list-style:none; align-items:center;
+  display:flex; gap:0; list-style:none; align-items:stretch;
+  flex-wrap:nowrap; white-space:nowrap; flex:1; justify-content:center;
+  height:var(--nav-h);
+}
+.nav-links li {
+  display:flex; align-items:center;
 }
 .nav-links li a {
-  font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.4em;
-  text-transform:uppercase; color:rgba(240,234,216,0.58);
+  font-family:'Cinzel',serif; font-size:0.6rem; font-weight:400;
+  letter-spacing:0.38em; text-transform:uppercase;
+  color:rgba(201,168,76,0.55);
   text-decoration:none; cursor:pointer;
-  transition: var(--trans); position:relative; padding-bottom:3px;
+  display:flex; align-items:center;
+  padding:0 22px; height:100%;
+  position:relative;
+  transition: color 0.3s ease;
 }
 .nav-links li a::after {
-  content:''; position:absolute; bottom:0; left:0; right:0; height:1px;
-  background: var(--gold); transform:scaleX(0); transition: var(--trans);
-  transform-origin: left;
+  content:'';
+  position:absolute; bottom:0; left:22px; right:22px; height:2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform:scaleX(0);
+  transition: transform 0.38s cubic-bezier(0.16,1,0.3,1);
 }
-.nav-links li a:hover { color: var(--gold); }
-.nav-links li a:hover::after,
-.nav-links li a.active::after { transform: scaleX(1); }
-.nav-links li a.active { color: var(--gold); }
+.nav-links li a:hover { color:var(--gold-light); }
+.nav-links li a:hover::after { transform:scaleX(1); }
+.nav-links li a.active {
+  color:var(--gold);
+}
+.nav-links li a.active::after { transform:scaleX(1); }
 
 .nav-cta {
-  font-family:'Cinzel',serif; font-size:0.58rem; letter-spacing:0.3em;
+  font-family:'Cinzel',serif; font-size:0.54rem; letter-spacing:0.28em;
   text-transform:uppercase; color: var(--gold); border:1px solid var(--gold);
-  padding:10px 26px; text-decoration:none; cursor:pointer;
-  transition: var(--trans); background:transparent;
+  padding:10px 22px; text-decoration:none; cursor:pointer;
+  transition: var(--trans); background:transparent; flex-shrink:0;
+  white-space:nowrap;
 }
 .nav-cta:hover { background: var(--gold); color: var(--forest); }
 
-/* Mobile nav toggle */
+/* Mobile burger */
 .nav-burger {
-  display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px;
+  display:none; flex-direction:column; justify-content:center;
+  gap:6px; cursor:pointer; padding:6px; z-index:1001;
+  background:none; border:none;
 }
 .nav-burger span {
-  display:block; width:24px; height:1.5px; background:var(--gold);
-  transition: var(--trans);
+  display:block; width:22px; height:1.5px; background:var(--gold);
+  transition: var(--trans); transform-origin:center;
 }
+.nav-burger.open span:nth-child(1) { transform:translateY(7.5px) rotate(45deg); }
+.nav-burger.open span:nth-child(2) { opacity:0; transform:scaleX(0); }
+.nav-burger.open span:nth-child(3) { transform:translateY(-7.5px) rotate(-45deg); }
+
+/* Mobile drawer */
+.mobile-drawer {
+  display:none; position:fixed; top:var(--nav-h); left:0; right:0;
+  background:rgba(10,29,18,0.99);
+  border-bottom:1px solid rgba(201,168,76,0.13);
+  padding:32px 40px 40px; z-index:999;
+  flex-direction:column; gap:0;
+  backdrop-filter:blur(20px);
+}
+.mobile-drawer.open { display:flex; }
+.mobile-drawer li {
+  list-style:none;
+  border-bottom:1px solid rgba(201,168,76,0.08);
+}
+.mobile-drawer li a {
+  display:block; padding:18px 0;
+  font-family:'Cinzel',serif; font-size:0.72rem; letter-spacing:0.36em;
+  text-transform:uppercase; color:var(--gold);
+  text-decoration:none; cursor:pointer; transition:color 0.3s;
+}
+.mobile-drawer li a:hover,
+.mobile-drawer li a.active { color:var(--gold); }
+.mobile-drawer .drawer-cta {
+  margin-top:28px;
+  font-family:'Cinzel',serif; font-size:0.62rem; letter-spacing:0.3em;
+  text-transform:uppercase; color:var(--gold); border:1px solid var(--gold);
+  padding:15px 0; text-align:center; cursor:pointer;
+  background:transparent; transition:var(--trans); display:block;
+}
+.mobile-drawer .drawer-cta:hover { background:var(--gold); color:var(--forest); }
 
 /* ═══════════════════════════════════════════════
    PAGE SYSTEM
@@ -685,6 +735,12 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5); }
   color:var(--gold-light); font-style:italic; font-size:1rem;
   margin-top:18px;
 }
+.form-error {
+  display:none; padding:18px 24px;
+  background:rgba(60,20,20,0.7); border:1px solid rgba(220,80,80,0.3);
+  color:rgba(255,180,180,0.9); font-style:italic; font-size:1rem;
+  margin-top:18px;
+}
 
 /* ═══════════════════════════════════════════════
    FOOTER
@@ -757,23 +813,71 @@ footer {
   footer { grid-template-columns:1fr 1fr; }
   .footer-contact { text-align:left; }
 }
-@media (max-width:768px) {
+@media (max-width:860px) {
   .nav-links, .nav-cta { display:none; }
   .nav-burger { display:flex; }
+  nav { padding:0 24px; }
+}
+@media (max-width:768px) {
+  /* Layout */
   .products-grid { grid-template-columns:1fr; }
   .values-grid { grid-template-columns:1fr; }
   .team-grid { grid-template-columns:1fr; }
   .form-grid { grid-template-columns:1fr; }
   footer { grid-template-columns:1fr; text-align:center; }
+  .footer-nav { align-items:center; }
   .footer-contact { text-align:center; }
   .footer-bottom { flex-direction:column; gap:8px; text-align:center; }
-  .hero { padding:60px 24px; }
-  .products-hero, .about-hero, .orders-hero { padding:80px 28px 60px; }
-  .products-grid-section { padding:60px 28px; }
-  .values-section { padding:60px 28px; }
-  .team-section { padding:60px 28px; }
-  .about-manifesto { padding:70px 28px; }
-  .orders-body { padding:60px 28px; gap:40px; }
+
+  /* Spacing */
+  .hero { padding:52px 20px 80px; }
+  .products-hero, .about-hero, .orders-hero { padding:64px 24px 52px; }
+  .products-grid-section { padding:52px 24px; }
+  .values-section { padding:52px 24px; }
+  .team-section { padding:52px 24px; }
+  .about-manifesto { padding:60px 24px; }
+  .orders-body { padding:48px 24px; gap:36px; }
+  .intro-strip { padding:56px 24px; }
+  .feature-card { padding:44px 28px; }
+
+  /* Hero bottles smaller on mobile */
+  .hero-bottles { gap:4px; }
+  .bottle-wrap:nth-child(1) svg, .bottle-wrap:nth-child(3) svg { width:80px !important; }
+  .bottle-wrap:nth-child(2) svg { width:90px !important; }
+  .hero-teu { font-size:3.4rem; }
+  .bottle-label-tip { font-size:0.44rem; }
+
+  /* Product detail stacked */
+  .product-detail { grid-template-columns:1fr; }
+  .product-detail-visual { padding:48px 24px; min-height:auto; }
+  .product-detail-info { padding:40px 24px; }
+
+  /* About */
+  .about-manifesto-inner { grid-template-columns:1fr; gap:36px; }
+  .manifesto-quote blockquote { font-size:1.4rem; }
+
+  /* Order form */
+  .order-form-card { padding:36px 24px; }
+  .contact-info-card { padding:28px 20px; }
+  .orders-body { grid-template-columns:1fr; }
+
+  /* Tabs scrollable */
+  .product-tabs { padding:0 20px; justify-content:flex-start; overflow-x:auto; }
+  .product-tab { padding:18px 18px; font-size:0.5rem; }
+
+  /* Stats */
+  .intro-strip-stats { grid-template-columns:1fr 1fr; }
+  .stat-card { padding:28px 20px; }
+
+  /* Feature strip */
+  .feature-strip { grid-template-columns:1fr; }
+}
+@media (max-width:420px) {
+  .hero-teu { font-size:2.8rem; letter-spacing:0.3em; }
+  .hero-tagline h2 { font-size:1.1rem; }
+  .section-title { font-size:1.8rem; }
+  .bottle-wrap:nth-child(1) svg, .bottle-wrap:nth-child(3) svg { width:68px !important; }
+  .bottle-wrap:nth-child(2) svg { width:78px !important; }
 }
 </style>
 </head>
@@ -791,9 +895,18 @@ footer {
     <li><a onclick="showPage('orders')" id="nav-orders">Encomendas</a></li>
   </ul>
   <a class="nav-cta" onclick="showPage('orders')">Pedir Proposta</a>
-  <div class="nav-burger" onclick="toggleMobileMenu()">
+  <button class="nav-burger" onclick="toggleMobileMenu()" aria-label="Menu" type="button">
     <span></span><span></span><span></span>
-  </div>
+  </button>
+</nav>
+
+<!-- Mobile Drawer -->
+<nav class="mobile-drawer" id="mobileDrawer">
+  <li><a onclick="showPage('home');closeMobileMenu()" id="mob-home" class="active">Início</a></li>
+  <li><a onclick="showPage('products');closeMobileMenu()" id="mob-products">Produtos</a></li>
+  <li><a onclick="showPage('about');closeMobileMenu()" id="mob-about">Sobre Nós</a></li>
+  <li><a onclick="showPage('orders');closeMobileMenu()" id="mob-orders">Encomendas</a></li>
+  <a class="drawer-cta" onclick="showPage('orders');closeMobileMenu()">Pedir Proposta</a>
 </nav>
 
 <!-- ══════════════════════════════════════════
@@ -993,7 +1106,7 @@ footer {
 
     <div class="hero-tagline">
       <h2>Cada sabor, criado exclusivamente para o seu espaço.</h2>
-      <p>Concentrados · Cocktails · Shots · Copos Comestíveis · Lisboa</p>
+      <p>Concentrados · Cocktails · Shots · Shots & Experiências · Lisboa</p>
     </div>
 
     <div class="hero-scroll-cue">
@@ -1020,16 +1133,12 @@ footer {
       </div>
       <div class="intro-strip-stats">
         <div class="stat-card">
-          <div class="stat-num">100<span style="font-size:1.2rem">L</span></div>
-          <div class="stat-label">Capacidade diária</div>
-        </div>
-        <div class="stat-card">
           <div class="stat-num">100<span style="font-size:1.2rem">%</span></div>
           <div class="stat-label">Produtos exclusivos</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num">3</div>
-          <div class="stat-label">Linhas de produto</div>
+          <div class="stat-num">✦</div>
+          <div class="stat-label">Feito por encomenda</div>
         </div>
         <div class="stat-card">
           <div class="stat-num" style="font-size:1.6rem;letter-spacing:0.08em">Lisboa</div>
@@ -1071,7 +1180,7 @@ footer {
       <a onclick="showPage('orders')">Encomendas</a>
     </nav>
     <div class="footer-contact">
-      <p><a href="/cdn-cgi/l/email-protection#264f484049524353565266414b474f4a0845494b"><span class="__cf_email__" data-cfemail="97fef9f1f8e3f2e2e7e3d7f0faf6fefbb9f4f8fa">[email&#160;protected]</span></a></p>
+      <p>infoteupt@gmail.com</p>
       <p><a href="tel:+351926172087">926 172 87</a></p>
       <p>Lisboa, Portugal</p>
     </div>
@@ -1103,7 +1212,6 @@ footer {
     <button class="product-tab" onclick="switchTab('manga',this)">Concentrado de Manga</button>
     <button class="product-tab" onclick="switchTab('cocktails',this)">Cocktails Assinatura</button>
     <button class="product-tab" onclick="switchTab('shots',this)">Shots Personalizados</button>
-    <button class="product-tab" onclick="switchTab('chocolates',this)">Copos Comestíveis</button>
   </div>
 
   <!-- ── PANEL: Pêssego ── -->
@@ -1464,86 +1572,6 @@ footer {
     </div>
   </div>
 
-  <!-- ── PANEL: Copos Comestíveis ── -->
-  <div class="product-panel" id="panel-chocolates">
-    <div class="products-grid-section">
-      <span class="section-eyebrow">Linha Experiências</span>
-      <h2 class="section-title">Copos <em>Comestíveis</em></h2>
-      <div class="rule left"></div>
-      <p style="color:var(--cream-dim);font-size:1.02rem;max-width:600px;margin-top:16px;">Chocolate artesanal moldado na forma de copo, personalizável com o logótipo do seu espaço. A bebida serve-se dentro do copo — e no fim, come-se o copo. Inesquecível.</p>
-      <div class="products-grid" style="margin-top:48px">
-        <div class="product-grid-card" onclick="toggleDetail(this)">
-          <svg class="pgc-icon" viewBox="0 0 48 48"><ellipse cx="24" cy="34" rx="14" ry="6"/><path d="M10 34 Q10 44 24 44 Q38 44 38 34"/><ellipse cx="24" cy="34" rx="10" ry="4" fill="rgba(201,168,76,0.18)" stroke="none"/><path d="M18 22 Q16 14 18 10 Q24 6 30 10 Q32 14 30 22" fill="none"/></svg>
-          <div class="pgc-title">Copo de Chocolate Negro</div>
-          <div class="pgc-desc">Copo de chocolate negro (70% cacau) com o logótipo do cliente gravado ou impresso em chocolate branco. Ideal para shots e sobremesas líquidas.</div>
-          <div class="pgc-detail">
-            <div class="nutrition-card" style="margin-top:0">
-              <div class="nutrition-card-title">Ficha Técnica</div>
-              <div class="nutrition-row"><span class="nutrition-key">Capacidade</span><span class="nutrition-val">4 cl – 8 cl</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Cacau</span><span class="nutrition-val">70%</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Valor energético</span><span class="nutrition-val">≈ 110 kcal / unidade</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Contém</span><span class="nutrition-val">Leite, Soja</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Mínimo</span><span class="nutrition-val">50 unidades / encomenda</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Personalização</span><span class="nutrition-val">Logo em relevo ou impressão</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="product-grid-card" onclick="toggleDetail(this)">
-          <svg class="pgc-icon" viewBox="0 0 48 48"><ellipse cx="24" cy="34" rx="14" ry="6"/><path d="M10 34 Q10 44 24 44 Q38 44 38 34"/><ellipse cx="24" cy="34" rx="10" ry="4" fill="rgba(255,255,200,0.2)" stroke="none"/><path d="M20 24 Q18 16 20 12 Q24 8 28 12 Q30 16 28 24" fill="none"/></svg>
-          <div class="pgc-title">Copo de Chocolate de Leite</div>
-          <div class="pgc-desc">Versão mais suave, em chocolate de leite. Combina com shots frutados, cocktails cítricos e bebidas com base de baunilha ou caramelo.</div>
-          <div class="pgc-detail">
-            <div class="nutrition-card" style="margin-top:0">
-              <div class="nutrition-card-title">Ficha Técnica</div>
-              <div class="nutrition-row"><span class="nutrition-key">Capacidade</span><span class="nutrition-val">4 cl – 8 cl</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Cacau</span><span class="nutrition-val">35%</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Valor energético</span><span class="nutrition-val">≈ 125 kcal / unidade</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Contém</span><span class="nutrition-val">Leite, Soja</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Mínimo</span><span class="nutrition-val">50 unidades / encomenda</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Personalização</span><span class="nutrition-val">Logo em relevo ou impressão</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="product-grid-card" onclick="toggleDetail(this)">
-          <svg class="pgc-icon" viewBox="0 0 48 48"><ellipse cx="24" cy="34" rx="14" ry="6"/><path d="M10 34 Q10 44 24 44 Q38 44 38 34"/><ellipse cx="24" cy="34" rx="10" ry="4" fill="rgba(201,168,76,0.22)" stroke="none"/><circle cx="24" cy="18" r="8"/><line x1="20" y1="14" x2="22" y2="20" stroke-width="0.8"/><line x1="28" y1="14" x2="26" y2="20" stroke-width="0.8"/></svg>
-          <div class="pgc-title">Pack Experiência Completa</div>
-          <div class="pgc-desc">Combinação de copo comestível + shot ou cocktail em concentrado TEU, num pack completo para servir ao cliente como experiência única e memorável.</div>
-          <div class="pgc-detail">
-            <div class="nutrition-card" style="margin-top:0">
-              <div class="nutrition-card-title">Ficha Técnica</div>
-              <div class="nutrition-row"><span class="nutrition-key">Inclui</span><span class="nutrition-val">Copo + Concentrado + Rótulo</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Mínimo</span><span class="nutrition-val">50 unidades / encomenda</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Personalização</span><span class="nutrition-val">Total — copo, líquido, embalagem</span></div>
-              <div class="nutrition-row"><span class="nutrition-key">Prazo</span><span class="nutrition-val">10 – 18 dias úteis</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:44px;text-align:center">
-        <button class="gold-btn solid" onclick="showPage('orders')">Pedir Copos Comestíveis</button>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <div class="footer-brand"><div class="name">TEU</div><div class="tagline">O Teu Design</div></div>
-    <nav class="footer-nav">
-      <a onclick="showPage('home')">Início</a>
-      <a onclick="showPage('products')">Produtos</a>
-      <a onclick="showPage('about')">Sobre Nós</a>
-      <a onclick="showPage('orders')">Encomendas</a>
-    </nav>
-    <div class="footer-contact">
-      <p><a href="/cdn-cgi/l/email-protection#177e797178637262676357707a767e7b3974787a"><span class="__cf_email__" data-cfemail="523b3c343d263727222612353f333b3e7c313d3f">[email&#160;protected]</span></a></p>
-      <p><a href="tel:+351926172087">926 172 87</a></p>
-      <p>Lisboa, Portugal</p>
-    </div>
-  </footer>
-  <div class="footer-bottom">
-    <p>© 2025 TEU — Todos os direitos reservados</p>
-    <p>Lisboa · Portugal</p>
-  </div>
-
 </div><!-- /products -->
 
 
@@ -1651,7 +1679,7 @@ footer {
       <a onclick="showPage('orders')">Encomendas</a>
     </nav>
     <div class="footer-contact">
-      <p><a href="/cdn-cgi/l/email-protection#f29b9c949d8697878286b2959f939b9edc919d9f"><span class="__cf_email__" data-cfemail="5c35323a332839292c281c3b313d3530723f3331">[email&#160;protected]</span></a></p>
+      <p>afonsocanas2023@gmail.com</p>
       <p><a href="tel:+351926172087">926 172 87</a></p>
       <p>Lisboa, Portugal</p>
     </div>
@@ -1671,7 +1699,7 @@ footer {
 
   <div class="orders-hero">
     <span class="section-eyebrow">Contacto & Encomendas</span>
-    <h1 class="section-title">Vamos criar<br><em>algo seu</em></h1>
+    <h1 class="section-title">Vamos criar<br><em>algo TEU</em></h1>
     <div class="rule"></div>
     <p>Preencha o formulário ou entre em contacto direto. Respondemos em 24 horas úteis com uma proposta personalizada para o seu espaço.</p>
   </div>
@@ -1689,12 +1717,12 @@ footer {
       <div class="contact-info-card">
         <div class="contact-block">
           <span class="contact-block-label">Email principal</span>
-          <div class="contact-block-val"><a href="/cdn-cgi/l/email-protection#e68f8880899283939692a6818b878f8ac885898b"><span class="__cf_email__" data-cfemail="5b32353d342f3e2e2b2f1b3c363a323775383436">[email&#160;protected]</span></a></div>
+          <div class="contact-block-val">infoteupt@gmail.com</div>
           <div class="contact-block-note">Para encomendas, propostas e informações gerais</div>
         </div>
         <div class="contact-block">
           <span class="contact-block-label">Email alternativo</span>
-          <div class="contact-block-val"><a href="/cdn-cgi/l/email-protection#6504030a0b160a06040b041657555756250208040c094b060a08"><span class="__cf_email__" data-cfemail="85e4e3eaebf6eae6e4ebe4f6b7b5b7b6c5e2e8e4ece9abe6eae8">[email&#160;protected]</span></a></div>
+          <div class="contact-block-val"><a href="mailto:afonsocanas2023@gmail.com">afonsocanas2023@gmail.com</a></div>
           <div class="contact-block-note">Contacto direto com o fundador</div>
         </div>
         <div class="contact-block">
@@ -1712,8 +1740,8 @@ footer {
       <div class="contact-info-card">
         <div class="nutrition-card-title" style="font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.4em;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:12px;">Horário de resposta <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(201,168,76,0.3),transparent)"></span></div>
         <div class="hours-row"><span class="hours-day">Segunda — Sexta</span><span class="hours-time">09:00 – 18:00</span></div>
-        <div class="hours-row"><span class="hours-day">Sábado</span><span class="hours-time">10:00 – 14:00</span></div>
-        <div class="hours-row"><span class="hours-day">Domingo</span><span class="hours-time">Fechado</span></div>
+        <div class="hours-row"><span class="hours-day">Sábado</span><span class="hours-time">09:00 – 18:00</span></div>
+        <div class="hours-row"><span class="hours-day">Domingo</span><span class="hours-time">09:00 – 18:00</span></div>
         <div style="margin-top:16px;font-size:0.88rem;color:rgba(240,234,216,0.38);font-style:italic;">Encomendas urgentes para eventos: contacto direto por telefone.</div>
       </div>
     </div>
@@ -1722,70 +1750,86 @@ footer {
     <div class="order-form-card">
       <h3>Formulário de Encomenda</h3>
       <p class="sub">Preencha os campos abaixo. Entraremos em contacto em 24 horas úteis.</p>
-      <div class="form-grid" id="orderForm">
-        <div class="form-group">
-          <label>Nome</label>
-          <input type="text" placeholder="O seu nome" id="f-nome">
+
+      <!-- FormSubmit.co — sends directly to infoteupt@gmail.com, no account needed -->
+      <form id="orderForm" action="https://formsubmit.co/infoteupt@gmail.com" method="POST">
+        <!-- FormSubmit config -->
+        <input type="hidden" name="_subject" value="✦ Nova Encomenda — TEU">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="Obrigado pelo seu contacto. A equipa TEU entrará em contacto consigo nas próximas 24 horas úteis.">
+        <input type="hidden" name="_next" value="https://teu.pt/obrigado">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nome *</label>
+            <input type="text" name="Nome" placeholder="O seu nome" required>
+          </div>
+          <div class="form-group">
+            <label>Estabelecimento</label>
+            <input type="text" name="Estabelecimento" placeholder="Nome do bar / restaurante">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="Email" placeholder="email@exemplo.com" required>
+          </div>
+          <div class="form-group">
+            <label>Telefone</label>
+            <input type="tel" name="Telefone" placeholder="9xx xxx xxx">
+          </div>
+          <div class="form-group full">
+            <label>Produto de interesse</label>
+            <select name="Produto">
+              <option value="">— Selecione um produto —</option>
+              <option>Concentrado de Pêssego</option>
+              <option>Concentrado de Maracujá</option>
+              <option>Concentrado de Manga</option>
+              <option>Cocktail Assinatura</option>
+              <option>Shots Personalizados</option>
+              <option>Shots &amp; Experiências</option>
+              <option>Pack Completo / Vários Produtos</option>
+              <option>Dúvida / Informação</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Volume estimado</label>
+            <select name="Volume">
+              <option value="">— Volume aproximado —</option>
+              <option>Menos de 10 L</option>
+              <option>10 – 30 L</option>
+              <option>30 – 60 L</option>
+              <option>Mais de 60 L</option>
+              <option>Para evento (volume a definir)</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label>Mensagem</label>
+            <textarea name="Mensagem" placeholder="Descreva o que procura — sabores, branding, prazos, ideias..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label>Como nos encontrou?</label>
+            <select name="Origem">
+              <option value="">— Selecione —</option>
+              <option>Recomendação de um colega</option>
+              <option>Redes sociais</option>
+              <option>Pesquisa online</option>
+              <option>Visita presencial da equipa TEU</option>
+              <option>Outro</option>
+            </select>
+          </div>
         </div>
-        <div class="form-group">
-          <label>Estabelecimento</label>
-          <input type="text" placeholder="Nome do bar / restaurante" id="f-local">
+
+        <div class="form-submit-row">
+          <p class="form-note">Os seus dados são usados exclusivamente para responder ao seu pedido.</p>
+          <button type="submit" class="gold-btn solid">Enviar Pedido →</button>
         </div>
-        <div class="form-group">
-          <label>Email</label>
-          <input type="email" placeholder="email@exemplo.com" id="f-email">
-        </div>
-        <div class="form-group">
-          <label>Telefone</label>
-          <input type="tel" placeholder="9xx xxx xxx" id="f-tel">
-        </div>
-        <div class="form-group full">
-          <label>Produto de interesse</label>
-          <select id="f-produto">
-            <option value="">— Selecione um produto —</option>
-            <option>Concentrado de Pêssego</option>
-            <option>Concentrado de Maracujá</option>
-            <option>Concentrado de Manga</option>
-            <option>Cocktail Assinatura</option>
-            <option>Shots Personalizados</option>
-            <option>Copos Comestíveis</option>
-            <option>Pack Completo / Vários Produtos</option>
-            <option>Dúvida / Informação</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label>Volume estimado</label>
-          <select id="f-volume">
-            <option value="">— Volume aproximado —</option>
-            <option>Menos de 10 L</option>
-            <option>10 – 30 L</option>
-            <option>30 – 60 L</option>
-            <option>Mais de 60 L</option>
-            <option>Para evento (volume a definir)</option>
-          </select>
-        </div>
-        <div class="form-group full">
-          <label>Mensagem</label>
-          <textarea placeholder="Descreva o que procura — sabores, branding, prazos, ideias..." id="f-msg"></textarea>
-        </div>
-        <div class="form-group full">
-          <label>Como nos encontrou?</label>
-          <select id="f-origem">
-            <option value="">— Selecione —</option>
-            <option>Recomendação de um colega</option>
-            <option>Redes sociais</option>
-            <option>Pesquisa online</option>
-            <option>Visita presencial da equipa TEU</option>
-            <option>Outro</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-submit-row">
-        <p class="form-note">Os seus dados são usados exclusivamente para responder ao seu pedido.</p>
-        <button class="gold-btn solid" onclick="submitForm()">Enviar Pedido →</button>
-      </div>
+      </form>
+
       <div class="form-success" id="formSuccess">
-        ✦ &nbsp; O seu pedido foi registado. Entraremos em contacto nas próximas 24 horas úteis.
+        ✦ &nbsp; Pedido enviado com sucesso! Entraremos em contacto nas próximas 24 horas úteis.
+      </div>
+      <div class="form-error" id="formError">
+        Ocorreu um erro ao enviar. Por favor tente novamente ou contacte-nos por email.
       </div>
     </div>
 
@@ -1800,7 +1844,7 @@ footer {
       <a onclick="showPage('orders')">Encomendas</a>
     </nav>
     <div class="footer-contact">
-      <p><a href="/cdn-cgi/l/email-protection#70191e161f041505000430171d11191c5e131f1d"><span class="__cf_email__" data-cfemail="fa93949c958e9f8f8a8eba9d979b9396d4999597">[email&#160;protected]</span></a></p>
+      <p>infoteupt@gmail.com</p>
       <p><a href="tel:+351926172087">926 172 87</a></p>
       <p>Lisboa, Portugal</p>
     </div>
@@ -1816,22 +1860,23 @@ footer {
 <!-- ══════════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 // Page navigation
 function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => {
+  document.querySelectorAll('.page').forEach(function(p) {
     p.classList.remove('active');
   });
   var target = document.getElementById(id);
-  target.classList.add('active');
+  if (target) { target.classList.add('active'); }
   window.scrollTo(0, 0);
-
-  // update nav
-  document.querySelectorAll('.nav-links a').forEach(function(a) {
-    a.classList.remove('active');
-  });
+  // update desktop nav
+  document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
   var navEl = document.getElementById('nav-' + id);
   if (navEl) navEl.classList.add('active');
+  // update mobile drawer
+  document.querySelectorAll('.mobile-drawer a').forEach(function(a) { a.classList.remove('active'); });
+  var mobEl = document.getElementById('mob-' + id);
+  if (mobEl) mobEl.classList.add('active');
 }
 
 // Navigate to products page + open specific tab
@@ -1873,32 +1918,36 @@ window.addEventListener('scroll', function() {
 });
 
 // Form submit
-function submitForm() {
-  const nome = document.getElementById('f-nome').value.trim();
-  const email = document.getElementById('f-email').value.trim();
-  if (!nome || !email) {
-    alert('Por favor preencha o nome e o email antes de enviar.');
-    return;
-  }
-  document.getElementById('formSuccess').style.display = 'block';
-  document.getElementById('orderForm').style.opacity = '0.38';
-  document.getElementById('orderForm').style.pointerEvents = 'none';
-  window.location.href = 'mailto:infoteupt@gmail.com?subject=Encomenda%20TEU%20%E2%80%94%20' + encodeURIComponent(nome) + '&body=' + encodeURIComponent('Nome: ' + nome + '\nEmail: ' + email + '\nProduto: ' + document.getElementById('f-produto').value + '\nVolume: ' + document.getElementById('f-volume').value + '\n\n' + document.getElementById('f-msg').value);
-}
+
 
 // Mobile menu toggle
 function toggleMobileMenu() {
-  var links = document.querySelector('.nav-links');
-  var cta = document.querySelector('.nav-cta');
-  var isOpen = links.style.display === 'flex';
+  var burger = document.querySelector('.nav-burger');
+  var drawer = document.getElementById('mobileDrawer');
+  var isOpen = drawer.classList.contains('open');
   if (isOpen) {
-    links.style.display = '';
-    cta.style.display = '';
+    drawer.classList.remove('open');
+    burger.classList.remove('open');
   } else {
-    links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,29,18,0.98);padding:24px 40px 32px;gap:20px;z-index:999;border-bottom:1px solid rgba(201,168,76,0.1)';
-    cta.style.cssText = 'display:block;margin:4px 40px 0;text-align:center';
+    drawer.classList.add('open');
+    burger.classList.add('open');
   }
 }
+function closeMobileMenu() {
+  var burger = document.querySelector('.nav-burger');
+  var drawer = document.getElementById('mobileDrawer');
+  drawer.classList.remove('open');
+  burger.classList.remove('open');
+}
+document.addEventListener('click', function(e) {
+  var burger = document.querySelector('.nav-burger');
+  var drawer = document.getElementById('mobileDrawer');
+  if (drawer && drawer.classList.contains('open')) {
+    if (!drawer.contains(e.target) && !burger.contains(e.target)) {
+      closeMobileMenu();
+    }
+  }
+});
 
 // Init
 showPage('home');
