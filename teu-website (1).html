@@ -118,12 +118,10 @@ nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5); }
 ═══════════════════════════════════════════════ */
 .page {
   min-height:100vh; padding-top: var(--nav-h);
-  opacity:0; transform:translateY(18px);
-  transition: opacity 0.52s cubic-bezier(0.16,1,0.3,1), transform 0.52s cubic-bezier(0.16,1,0.3,1);
-  pointer-events:none; display:none;
+  display:none;
 }
 .page.active {
-  display:block; opacity:1; transform:translateY(0); pointer-events:all;
+  display:block;
 }
 
 /* ═══════════════════════════════════════════════
@@ -1823,43 +1821,38 @@ footer {
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => {
     p.classList.remove('active');
-    p.style.display = 'none';
   });
-  const target = document.getElementById(id);
-  target.style.display = 'block';
-  // force reflow
-  target.getBoundingClientRect();
+  var target = document.getElementById(id);
   target.classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  window.scrollTo(0, 0);
 
   // update nav
-  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-  const navEl = document.getElementById('nav-' + id);
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.classList.remove('active');
+  });
+  var navEl = document.getElementById('nav-' + id);
   if (navEl) navEl.classList.add('active');
 }
 
 // Navigate to products page + open specific tab
 function goToProduct(productId) {
   showPage('products');
-  // find the tab
-  const tabMap = {
+  var tabMap = {
     pessego: 0, maracuja: 1, manga: 2, cocktails: 3, shots: 4, chocolates: 5
   };
-  const tabs = document.querySelectorAll('.product-tab');
-  const idx = tabMap[productId];
-  if (tabs[idx]) tabs[idx].click();
-  // small scroll to bring tabs into view
-  setTimeout(() => {
-    const tabsEl = document.querySelector('.product-tabs');
-    if (tabsEl) tabsEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 80);
+  var tabs = document.querySelectorAll('.product-tab');
+  var idx = tabMap[productId];
+  if (tabs[idx]) {
+    switchTab(productId, tabs[idx]);
+  }
+  window.scrollTo(0, 0);
 }
 
 // Tab switching in products page
 function switchTab(id, el) {
-  document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.product-tab').forEach(function(t) { t.classList.remove('active'); });
   el.classList.add('active');
-  document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.product-panel').forEach(function(p) { p.classList.remove('active'); });
   document.getElementById('panel-' + id).classList.add('active');
 }
 
@@ -1874,7 +1867,7 @@ function toggleDetail(card) {
 }
 
 // Navbar scroll effect
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', function() {
   const nav = document.getElementById('mainNav');
   nav.classList.toggle('scrolled', window.scrollY > 20);
 });
@@ -1890,4 +1883,26 @@ function submitForm() {
   document.getElementById('formSuccess').style.display = 'block';
   document.getElementById('orderForm').style.opacity = '0.38';
   document.getElementById('orderForm').style.pointerEvents = 'none';
-  window.location.href = `mailto:infoteupt@gmail.com?subject=Encomenda TEU — ${encodeURIComponent(nome)}&bod
+  window.location.href = 'mailto:infoteupt@gmail.com?subject=Encomenda%20TEU%20%E2%80%94%20' + encodeURIComponent(nome) + '&body=' + encodeURIComponent('Nome: ' + nome + '\nEmail: ' + email + '\nProduto: ' + document.getElementById('f-produto').value + '\nVolume: ' + document.getElementById('f-volume').value + '\n\n' + document.getElementById('f-msg').value);
+}
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  var links = document.querySelector('.nav-links');
+  var cta = document.querySelector('.nav-cta');
+  var isOpen = links.style.display === 'flex';
+  if (isOpen) {
+    links.style.display = '';
+    cta.style.display = '';
+  } else {
+    links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:72px;left:0;right:0;background:rgba(10,29,18,0.98);padding:24px 40px 32px;gap:20px;z-index:999;border-bottom:1px solid rgba(201,168,76,0.1)';
+    cta.style.cssText = 'display:block;margin:4px 40px 0;text-align:center';
+  }
+}
+
+// Init
+showPage('home');
+</script>
+
+</body>
+</html>
