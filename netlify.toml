@@ -1,0 +1,46 @@
+# TEU — Netlify configuration
+# Serves clean URLs (/, /produtos, /produto/maracuja …) from the .dc.html files.
+
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/"
+  to = "/index.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produtos"
+  to = "/produtos.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/sobre"
+  to = "/sobre.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/encomendas"
+  to = "/encomendas.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/catalogo"
+  to = "/catalogo.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/:slug"
+  to = "/produto/:slug.dc.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

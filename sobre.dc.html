@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>Sobre — TEU</title>
+<meta name="description" content="A TEU — concentrados de fruta feitos à mão em pequenos lotes, em Lisboa. A história, os valores e as pessoas por trás da marca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin:0; background:#000; color:#F6F1E7; -webkit-font-smoothing:antialiased; }
+  a { color:#D8BD8A; text-decoration:none; }
+  a:hover { color:#F6F1E7; }
+  ::selection { background:#B08D57; color:#000; }
+  ::-webkit-scrollbar { width:9px; height:9px; }
+  ::-webkit-scrollbar-track { background:#000; }
+  ::-webkit-scrollbar-thumb { background:#2a2318; }
+  ::-webkit-scrollbar-thumb:hover { background:#B08D57; }
+  .teu-burger { display:none; }
+  .teu-drawer { display:none; }
+  @media (max-width:880px) {
+    .teu-nav-links { display:none !important; }
+    .teu-burger { display:flex !important; }
+    .teu-drawer.open { display:flex !important; }
+  }
+  input, select, textarea { font-family:Manrope,system-ui,sans-serif; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:#B08D57 !important; }
+  input::placeholder, textarea::placeholder { color:rgba(246,241,231,0.42); }
+  @media print { .teu-noprint { display:none !important; } body { background:#fff !important; } * { color:#171106 !important; border-color:#c9bda4 !important; } }
+</style>
+</helmet>
+
+<div style="background:#000;font-family:Manrope,system-ui,sans-serif;min-height:100vh;overflow-x:hidden">
+  <header class="teu-noprint" style="position:fixed;top:0;left:0;right:0;height:74px;z-index:900;background:rgba(0,0,0,0.9);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(176,141,87,0.18);display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,56px);gap:20px">
+    <a href="index.dc.html" style="font-family:'DM Serif Display',Georgia,serif;font-size:23px;letter-spacing:0.4em;color:#B08D57;text-decoration:none;padding-left:4px">TEU</a>
+    <nav class="teu-nav-links" style="display:flex;align-items:center;gap:clamp(14px,2.4vw,34px)">
+      <a href="index.dc.html" data-t="nav.home" style="font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(246,241,231,0.68);text-decoration:none" style-hover="color:#D8BD8A">Início</a>
+      <a href="produtos.dc.html" data-t="nav.products" style="font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(246,241,231,0.68);text-decoration:none" style-hover="color:#D8BD8A">Produtos</a>
+      <a href="sobre.dc.html" data-t="nav.about" style="font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:#F6F1E7;text-decoration:none">Sobre</a>
+      <a href="encomendas.dc.html" data-t="nav.orders" style="font-size:11px;font-weight:500;letter-spacing:0.28em;text-transform:uppercase;color:rgba(246,241,231,0.68);text-decoration:none" style-hover="color:#D8BD8A">Encomendas</a>
+    </nav>
+    <button type="button" data-burger aria-label="Menu" class="teu-burger" style="flex-direction:column;justify-content:center;gap:5px;width:44px;height:44px;align-items:center;background:none;border:none;cursor:pointer;padding:0"><span style="display:block;width:22px;height:1.5px;background:#B08D57"></span><span style="display:block;width:22px;height:1.5px;background:#B08D57"></span><span style="display:block;width:22px;height:1.5px;background:#B08D57"></span></button>
+      <div style="display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:0.14em;font-weight:600">
+      <button type="button" onClick="{{ setPt }}" style="background:none;border:none;padding:2px;cursor:pointer;font:inherit;color:{{ ptColor }}">PT</button>
+      <span style="color:#B08D57">/</span>
+      <button type="button" onClick="{{ setEn }}" style="background:none;border:none;padding:2px;cursor:pointer;font:inherit;color:{{ enColor }}">EN</button>
+    </div>
+  </header>
+  <nav class="teu-drawer teu-noprint" style="position:fixed;top:74px;left:0;right:0;z-index:899;flex-direction:column;background:rgba(0,0,0,0.98);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid rgba(176,141,87,0.18);padding:8px clamp(18px,5vw,40px) 28px">
+      <a href="index.dc.html" data-t="nav.home" style="display:block;padding:17px 0;border-bottom:1px solid rgba(176,141,87,0.12);font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(246,241,231,0.65);text-decoration:none">Início</a>
+      <a href="produtos.dc.html" data-t="nav.products" style="display:block;padding:17px 0;border-bottom:1px solid rgba(176,141,87,0.12);font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(246,241,231,0.65);text-decoration:none">Produtos</a>
+      <a href="sobre.dc.html" data-t="nav.about" style="display:block;padding:17px 0;border-bottom:1px solid rgba(176,141,87,0.12);font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:#B08D57;text-decoration:none">Sobre</a>
+      <a href="encomendas.dc.html" data-t="nav.orders" style="display:block;padding:17px 0;border-bottom:1px solid rgba(176,141,87,0.12);font-size:11px;font-weight:600;letter-spacing:0.3em;text-transform:uppercase;color:rgba(246,241,231,0.65);text-decoration:none">Encomendas</a>
+    <a href="encomendas.dc.html" data-t="nav.cta" style="margin-top:22px;display:block;text-align:center;padding:16px 24px;background:#B08D57;color:#000;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;text-decoration:none">Pedir proposta</a>
+  </nav>
+
+  <section style="padding:74px 0 0">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,8vw,110px) clamp(20px,5vw,64px) clamp(40px,5vw,64px)">
+      <div data-t="s.eyebrow" style="font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:#B08D57;margin-bottom:24px">A nossa história</div>
+      <h1 data-t="s.h1" style="margin:0;max-width:18ch;font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(38px,5.4vw,74px);line-height:1.04;letter-spacing:-0.015em;color:#F6F1E7">Feito em Lisboa, para quem exige mais</h1>
+      <div style="width:120px;height:1px;background:linear-gradient(90deg,rgba(176,141,87,0.7),rgba(176,141,87,0));margin:30px 0 26px"></div>
+      <p data-t="s.body" style="margin:0;max-width:600px;font-size:16px;font-weight:300;line-height:1.8;color:rgba(246,241,231,0.6)">A TEU nasceu da convicção de que cada espaço merece produtos únicos. Que a experiência de um bar ou de um restaurante começa muito antes de o cliente se sentar — começa no sabor, no detalhe, na identidade do que é servido.</p>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(176,141,87,0.16);background:#050505">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
+      <div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:300;font-size:clamp(24px,3vw,38px);line-height:1.35;color:#F6F1E7">
+          <span data-t="s.quote">“O produto que servimos não existe em mais nenhum outro espaço do mundo. É mesmo teu.”</span>
+        </div>
+        <div data-t="s.cite" style="margin-top:24px;font-size:11px;font-weight:500;letter-spacing:0.34em;text-transform:uppercase;color:#C9A56A">TEU — Filosofia de marca</div>
+        <div style="margin-top:36px;overflow:hidden;border:1px solid rgba(176,141,87,0.16)">
+          <img src="assets/photo-1.jpeg" alt="Garrafas TEU e cartões de visita sobre linho" style="width:100%;display:block;filter:saturate(0.94) contrast(1.04)">
+        </div>
+      </div>
+      <div>
+        <p data-t="s.p1" style="margin:0 0 18px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(246,241,231,0.62)">Começámos pequenos, com uma ideia simples: os melhores bares e restaurantes merecem ingredientes criados especificamente para eles — não fórmulas genéricas de catálogo.</p>
+        <p data-t="s.p2" style="margin:0 0 18px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(246,241,231,0.62)">A partir de Lisboa, desenvolvemos concentrados, cocktails, shots e experiências comestíveis que refletem a identidade de cada cliente. Trabalhamos com chefs, bartenders e proprietários para criar produtos que contam a história do seu espaço.</p>
+        <p data-t="s.p3" style="margin:0 0 18px;font-size:16px;font-weight:300;line-height:1.85;color:rgba(246,241,231,0.62)">Somos uma equipa pequena, mas rigorosa. Com 100 litros de capacidade diária e um processo artesanal inteiramente controlado, garantimos que cada encomenda é uma obra única — como o espaço que a recebe.</p>
+        <div style="margin-top:34px;padding-top:28px;border-top:1px solid rgba(176,141,87,0.2)">
+          <div data-t="s.clients" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.6);margin-bottom:18px">Já servimos</div>
+          <div style="display:grid;gap:12px">
+            <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(19px,2vw,24px);color:#D8BD8A">House of Pilates</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(19px,2vw,24px);color:#D8BD8A">Food Fighters</div>
+            <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(19px,2vw,24px);color:#D8BD8A">Bairro do Avillez</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(176,141,87,0.16)">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,64px)">
+      <div data-t="s.vEyebrow" style="font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:#B08D57;margin-bottom:20px">Os nossos valores</div>
+      <h2 data-t="s.vH2" style="margin:0 0 clamp(32px,4vw,52px);font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);color:#F6F1E7">O que nos guia</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,178px),1fr));gap:1px">
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(26px,3vw,40px)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.28em;color:#C9A56A;margin-bottom:18px">01</div>
+          <div data-t="v01.t" style="font-family:'DM Serif Display',Georgia,serif;font-size:23px;color:#F6F1E7;margin-bottom:12px">Exclusividade</div>
+          <div data-t="v01.b" style="font-size:14px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.68)">Nenhum produto TEU é igual. Cada receita é criada de raiz para um único cliente e não é reaproveitada.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(26px,3vw,40px)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.28em;color:#C9A56A;margin-bottom:18px">02</div>
+          <div data-t="v02.t" style="font-family:'DM Serif Display',Georgia,serif;font-size:23px;color:#F6F1E7;margin-bottom:12px">Qualidade</div>
+          <div data-t="v02.b" style="font-size:14px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.68)">Fruta selecionada à mão, produção artesanal e controlo rigoroso em cada lote — do primeiro corte ao rótulo.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(26px,3vw,40px)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.28em;color:#C9A56A;margin-bottom:18px">03</div>
+          <div data-t="v03.t" style="font-family:'DM Serif Display',Georgia,serif;font-size:23px;color:#F6F1E7;margin-bottom:12px">Identidade</div>
+          <div data-t="v03.b" style="font-size:14px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.68)">O produto deve refletir o espaço que o serve: no sabor, na cor, no rótulo e na forma como chega à mesa.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(26px,3vw,40px)">
+          <div style="font-size:11px;font-weight:600;letter-spacing:0.28em;color:#C9A56A;margin-bottom:18px">04</div>
+          <div data-t="v04.t" style="font-family:'DM Serif Display',Georgia,serif;font-size:23px;color:#F6F1E7;margin-bottom:12px">Confiança</div>
+          <div data-t="v04.b" style="font-size:14px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.68)">Trabalhamos em proximidade com cada cliente, com transparência total sobre ingredientes, processo e prazos.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(176,141,87,0.16);background:#050505">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,64px)">
+      <div data-t="s.tEyebrow" style="font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:#B08D57;margin-bottom:20px">Equipa</div>
+      <h2 data-t="s.tH2" style="margin:0 0 clamp(32px,4vw,52px);font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(28px,3.6vw,48px);color:#F6F1E7">As pessoas por trás da TEU</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:1px">
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(28px,3.4vw,44px);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,2.4vw,32px);align-items:start">
+          <div style="width:72px;height:72px;border:1px solid rgba(176,141,87,0.4);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',Georgia,serif;font-size:22px;letter-spacing:0.1em;color:#B08D57">AC</div>
+          <div>
+            <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(21px,2.2vw,27px);color:#F6F1E7">Afonso Canas</div>
+            <div data-t="t0.r" style="margin:8px 0 14px;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#B08D57">Fundador & Director Criativo</div>
+            <div data-t="t0.b" style="font-size:14.5px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.72)">Desenvolvimento de produto, relação com clientes e visão da marca. A ideia, o processo e a obsessão pelo detalhe.</div>
+          </div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:clamp(28px,3.4vw,44px);display:grid;grid-template-columns:auto 1fr;gap:clamp(18px,2.4vw,32px);align-items:start">
+          <div style="width:72px;height:72px;border:1px solid rgba(176,141,87,0.4);display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',Georgia,serif;font-size:22px;letter-spacing:0.1em;color:#B08D57">LC</div>
+          <div>
+            <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(21px,2.2vw,27px);color:#F6F1E7">Leonardo Cortez</div>
+            <div data-t="t1.r" style="margin:8px 0 14px;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;color:#B08D57">Co-fundador & Operações</div>
+            <div data-t="t1.b" style="font-size:14.5px;font-weight:300;line-height:1.75;color:rgba(246,241,231,0.72)">Produção, controlo de qualidade e logística. Garante que cada lote sai como foi aprovado e chega quando foi prometido.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(176,141,87,0.16)">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(56px,7vw,100px) clamp(20px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,5vw,72px);align-items:start">
+      <div>
+        <div data-t="s.qEyebrow" style="font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:#B08D57;margin-bottom:20px">Segurança alimentar</div>
+        <h2 data-t="s.qH2" style="margin:0 0 22px;font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(26px,3.2vw,42px);line-height:1.12;color:#F6F1E7">Artesanal não significa informal</h2>
+        <p data-t="s.qP" style="margin:0;max-width:52ch;font-size:15.5px;font-weight:300;line-height:1.8;color:rgba(246,241,231,0.6)">Produzimos sob plano HACCP, com rastreabilidade de lote em todas as encomendas. Cada garrafa sai identificada com lote e data de validade, e a declaração nutricional de cada concentração está publicada nesta página — não escondida numa ficha interna.</p>
+      </div>
+      <div style="display:grid;gap:1px">
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:24px 26px">
+          <div data-t="s.q1t" style="font-size:14.5px;font-weight:500;color:#F6F1E7;margin-bottom:8px">Plano HACCP</div>
+          <div data-t="s.q1b" style="font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(246,241,231,0.68)">Análise de perigos e pontos críticos de controlo aplicada a toda a produção.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:24px 26px">
+          <div data-t="s.q2t" style="font-size:14.5px;font-weight:500;color:#F6F1E7;margin-bottom:8px">Rastreabilidade de lote</div>
+          <div data-t="s.q2b" style="font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(246,241,231,0.68)">Cada garrafa remete para o lote, a fruta e a data de produção.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:24px 26px">
+          <div data-t="s.q3t" style="font-size:14.5px;font-weight:500;color:#F6F1E7;margin-bottom:8px">Rotulagem conforme</div>
+          <div data-t="s.q3b" style="font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(246,241,231,0.68)">Ingredientes, alergénios e declaração nutricional segundo o Reg. (UE) 1169/2011.</div>
+        </div>
+        <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:24px 26px">
+          <div data-t="s.q4t" style="font-size:14.5px;font-weight:500;color:#F6F1E7;margin-bottom:8px">Cadeia de frio</div>
+          <div data-t="s.q4b" style="font-size:13.5px;font-weight:300;line-height:1.7;color:rgba(246,241,231,0.68)">Transporte e entrega refrigerados em Lisboa e área metropolitana.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid rgba(176,141,87,0.16);background:#050505">
+    <div style="max-width:900px;margin:0 auto;padding:clamp(56px,8vw,110px) clamp(20px,5vw,64px);text-align:center">
+      <h2 data-t="s.ctaH" style="margin:0 0 26px;font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(26px,3.4vw,44px);line-height:1.12;color:#F6F1E7">Vamos criar algo teu</h2>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
+        <a href="encomendas.dc.html" data-t="s.ctaB1" style="display:inline-flex;align-items:center;padding:16px 32px;background:#B08D57;border:1px solid #B08D57;color:#000;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;text-decoration:none" style-hover="background:#D8BD8A;border-color:#D8BD8A;color:#000">Pedir proposta</a>
+        <a href="produtos.dc.html" data-t="s.ctaB2" style="display:inline-flex;align-items:center;padding:16px 32px;background:transparent;border:1px solid rgba(176,141,87,0.45);color:#D8BD8A;font-size:11px;font-weight:600;letter-spacing:0.24em;text-transform:uppercase;text-decoration:none" style-hover="border-color:#B08D57;color:#F6F1E7">Ver a gama</a>
+      </div>
+    </div>
+  </section>
+  <footer class="teu-noprint" style="border-top:1px solid rgba(176,141,87,0.18);background:#050505">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(48px,6vw,76px) clamp(20px,5vw,64px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,168px),1fr));gap:clamp(28px,4vw,52px)">
+      <div>
+        <div style="font-family:'DM Serif Display',Georgia,serif;font-size:26px;letter-spacing:0.4em;color:#B08D57">TEU</div>
+        <div style="display:flex;align-items:center;gap:6px;margin:12px 0 16px">
+          <div style="width:30px;height:1px;background:rgba(176,141,87,0.5)"></div>
+          <div style="width:4px;height:4px;background:#B08D57;transform:rotate(45deg)"></div>
+          <div style="width:30px;height:1px;background:rgba(176,141,87,0.5)"></div>
+        </div>
+        <div data-t="foot.tag" style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:16px;color:rgba(246,241,231,0.64)">Fruta fresca, feita bebida.</div>
+      </div>
+      <div>
+        <div data-t="foot.nav" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:18px">Navegação</div>
+        <div style="display:grid;gap:11px">
+          <a href="index.dc.html" data-t="nav.home" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Início</a>
+          <a href="produtos.dc.html" data-t="nav.products" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Produtos</a>
+          <a href="sobre.dc.html" data-t="nav.about" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Sobre</a>
+          <a href="encomendas.dc.html" data-t="nav.orders" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Encomendas</a>
+        </div>
+      </div>
+      <div>
+        <div data-t="foot.range" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:18px">Gama</div>
+        <div style="display:grid;gap:11px">
+          <a href="produto/maracuja.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Maracujá</a>
+          <a href="produto/pessego.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Pêssego</a>
+          <a href="produto/manga.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Manga</a>
+          <a href="produtos.dc.html" data-t="foot.all" style="font-size:14px;font-weight:300;color:#D8BD8A;text-decoration:none" style-hover="color:#F6F1E7">Ver todos →</a>
+        </div>
+      </div>
+      <div>
+        <div data-t="foot.contact" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:18px">Contacto</div>
+        <div style="display:grid;gap:11px;font-size:14px;font-weight:300;color:rgba(246,241,231,0.7)">
+          <a href="mailto:infoteupt@gmail.com" style="color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">infoteupt@gmail.com</a>
+          <a href="tel:+351926177287" style="color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">+351 926 177 287</a>
+          <span style="line-height:1.6">Rua Emília das Neves A 43<br>Estrada de Benfica · Lisboa</span>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(176,141,87,0.12)">
+      <div style="max-width:1360px;margin:0 auto;padding:22px clamp(20px,5vw,64px);display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;font-size:12px;font-weight:300;letter-spacing:0.06em;color:rgba(246,241,231,0.52)">
+        <span>© 2026 TEU · Todos os direitos reservados</span>
+        <span data-t="foot.made">Feito em Lisboa</span>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const EN = {
+  'nav.home':'Home','nav.products':'Products','nav.about':'About','nav.orders':'Orders','nav.cta':'Request a quote',
+  's.eyebrow':'Our story','s.h1':'Made in Lisbon, for those who expect more',
+  's.body':'TEU was born from the conviction that every venue deserves products of its own. That the experience of a bar or a restaurant begins long before the guest sits down — it begins in the flavour, the detail, the identity of what is served.',
+  's.quote':'“What we serve exists in no other venue in the world. It is truly yours.”','s.cite':'TEU — Brand philosophy',
+  's.p1':'We started small, with a simple idea: the best bars and restaurants deserve ingredients created specifically for them — not generic catalogue formulas.',
+  's.p2':'From Lisbon we develop concentrates, cocktails, shots and edible experiences that reflect the identity of each client. We work with chefs, bartenders and owners to create products that tell the story of their venue.',
+  's.p3':'We are a small team, but a rigorous one. With 100 litres of daily capacity and an entirely controlled handmade process, we make sure every order is a one-off — like the room that receives it.',
+  's.clients':'Already serving',
+  's.vEyebrow':'Our values','s.vH2':'What guides us',
+  'v01.t':'Exclusivity','v01.b':'No two TEU products are alike. Every recipe is built from scratch for a single client and never reused.',
+  'v02.t':'Quality','v02.b':'Hand-picked fruit, handmade production and strict control on every batch — from the first cut to the label.',
+  'v03.t':'Identity','v03.b':'The product should reflect the room that serves it: in flavour, in colour, on the label and in how it reaches the table.',
+  'v04.t':'Trust','v04.b':'We work closely with every client, with total transparency on ingredients, process and lead times.',
+  's.tEyebrow':'Team','s.tH2':'The people behind TEU',
+  't0.r':'Founder & Creative Director','t0.b':'Product development, client relationships and brand vision. The idea, the process and the obsession with detail.',
+  't1.r':'Co-founder & Operations','t1.b':'Production, quality control and logistics. Makes sure every batch leaves as approved and arrives when promised.',
+  's.qEyebrow':'Food safety','s.qH2':'Handmade does not mean informal',
+  's.qP':'We produce under a HACCP plan, with batch traceability on every order. Each bottle leaves marked with its batch and best-before date, and the nutritional declaration for every strength is published on this site — not hidden in an internal spec sheet.',
+  's.q1t':'HACCP plan','s.q1b':'Hazard analysis and critical control points applied across production.',
+  's.q2t':'Batch traceability','s.q2b':'Every bottle traces back to its batch, its fruit and its production date.',
+  's.q3t':'Compliant labelling','s.q3b':'Ingredients, allergens and nutritional declaration under Reg. (EU) 1169/2011.',
+  's.q4t':'Cold chain','s.q4b':'Refrigerated transport and delivery across Lisbon and its metropolitan area.',
+  's.ctaH':'Let us make something yours','s.ctaB1':'Request a quote','s.ctaB2':'See the range',
+  'foot.tag':'Fresh fruit, made drinkable.','foot.nav':'Navigation','foot.range':'Range','foot.contact':'Contact','foot.all':'See all →','foot.made':'Made in Lisbon'
+};
+
+class Component extends DCLogic {
+  state = { lang: 'pt' };
+  componentDidMount() {
+    let l = 'pt';
+    try { if (localStorage.getItem('teu-lang') === 'en') l = 'en'; } catch (e) {}
+
+    if (l !== this.state.lang) this.setState({ lang: l }); else this.apply();
+  }
+  componentDidUpdate() { this.apply(); }
+  apply() {
+    const lang = this.state.lang;
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-t]').forEach(el => {
+      const k = el.getAttribute('data-t');
+      if (el.dataset.pt === undefined) el.dataset.pt = el.innerHTML;
+      const next = (lang === 'en' && EN[k]) ? EN[k] : el.dataset.pt;
+      if (el.innerHTML !== next) el.innerHTML = next;
+    });
+    document.querySelectorAll('[data-tp]').forEach(el => {
+      const k = el.getAttribute('data-tp');
+      if (el.dataset.ptPh === undefined) el.dataset.ptPh = el.getAttribute('placeholder') || '';
+      el.setAttribute('placeholder', (lang === 'en' && EN[k]) ? EN[k] : el.dataset.ptPh);
+    });
+  }
+  set(lang) { try { localStorage.setItem('teu-lang', lang); } catch (e) {} this.setState({ lang }); }
+  renderVals() {
+    const en = this.state.lang === 'en';
+    return {
+      setPt: () => this.set('pt'), setEn: () => this.set('en'),
+      ptColor: en ? 'rgba(246,241,231,0.6)' : '#B08D57',
+      enColor: en ? '#B08D57' : 'rgba(246,241,231,0.6)'
+    };
+  }
+}
+document.addEventListener('click', function (e) {
+  const d = document.querySelector('.teu-drawer');
+  if (!d) return;
+  if (e.target.closest('[data-burger]')) { d.classList.toggle('open'); return; }
+  if (e.target.closest('.teu-drawer a')) { d.classList.remove('open'); return; }
+  if (d.classList.contains('open') && !e.target.closest('header')) d.classList.remove('open');
+});
+</script>
+</body>
+</html>
