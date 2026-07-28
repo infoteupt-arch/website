@@ -1,5 +1,7 @@
 # TEU — Netlify configuration
-# Serves clean URLs (/, /produtos, /produto/maracuja …) from the .dc.html files.
+# Static site, no build step. Pretty URLs are exact-match rewrites only:
+# a wildcard like "/produto/:slug" would also capture "/produto/maracuja.dc.html"
+# and rewrite it to ".dc.html.dc.html", which 404s. Do not reintroduce it.
 
 [build]
   publish = "."
@@ -30,8 +32,48 @@
   status = 200
 
 [[redirects]]
-  from = "/produto/:slug"
-  to = "/produto/:slug.dc.html"
+  from = "/produto/maracuja"
+  to = "/produto/maracuja.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/pessego"
+  to = "/produto/pessego.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/manga"
+  to = "/produto/manga.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/morango"
+  to = "/produto/morango.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/tangerina"
+  to = "/produto/tangerina.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/coco"
+  to = "/produto/coco.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/framboesa"
+  to = "/produto/framboesa.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/cereja"
+  to = "/produto/cereja.dc.html"
+  status = 200
+
+[[redirects]]
+  from = "/produto/goiaba"
+  to = "/produto/goiaba.dc.html"
   status = 200
 
 [[headers]]
@@ -39,8 +81,3 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-[[headers]]
-  for = "/assets/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"

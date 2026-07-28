@@ -20,7 +20,7 @@ Sabores: `maracuja`, `pessego`, `manga`, `morango`, `tangerina`, `coco`, `frambo
 
 - `site.js` — fonte única dos dados de todos os sabores (nutrição, ingredientes, preços, notas PT/EN). As páginas de produto e o catálogo têm estes valores escritos no próprio HTML (para carregarem instantaneamente), por isso ao alterar aqui é preciso alterar também na página correspondente — ou pedir a regeneração.
 - `Bottle.dc.html` — garrafa TEU desenhada em SVG (vidro, arame, tampa, rótulo por sabor). Existe uma cópia em `produto/` porque as páginas de produto estão numa subpasta.
-- `assets/` — fotografias.
+- `assets/photo-1.jpg`, `assets/photo-2.jpg` — fotografias otimizadas. As duas imagens usadas em `index` e `sobre` estão **embutidas** (data URI) nessas páginas, para nunca falharem no alojamento; os ficheiros ficam aqui como originais de trabalho.
 - `support.js` — runtime das páginas. Não editar.
 - `index.html` — entrada universal (redireciona para `index.dc.html`), para o caso de o alojamento não usar `netlify.toml`.
 
@@ -29,7 +29,11 @@ Sabores: `maracuja`, `pessego`, `manga`, `morango`, `tangerina`, `coco`, `frambo
 1. `git push` para o GitHub.
 2. No Netlify: **Add new site → Import an existing project** e escolher o repositório.
 3. Build command: *(vazio)* · Publish directory: `.`
-4. `netlify.toml` já configura os URLs limpos e os cache headers.
+4. `netlify.toml` já configura os URLs limpos (`/`, `/produtos`, `/sobre`, `/encomendas`, `/catalogo`, `/produto/<sabor>`).
+
+> **Não usar redirects com wildcard para os produtos.** Uma regra `from = "/produto/:slug"` também captura
+> `/produto/maracuja.dc.html` e reescreve para `.dc.html.dc.html`, o que devolve *Page not found*.
+> As regras têm de ser exatas, uma por sabor — é assim que está no `netlify.toml`.
 
 ## Deploy — GitHub Pages
 
