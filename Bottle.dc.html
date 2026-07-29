@@ -189,7 +189,7 @@
 </svg>
 
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:740},&quot;flavour&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;maracuja&quot;,&quot;pessego&quot;,&quot;manga&quot;,&quot;morango&quot;,&quot;tangerina&quot;,&quot;coco&quot;,&quot;framboesa&quot;,&quot;cereja&quot;,&quot;goiaba&quot;],&quot;default&quot;:&quot;maracuja&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pt&quot;,&quot;en&quot;],&quot;default&quot;:&quot;pt&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pct&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[100,70,50,30],&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:300,&quot;height&quot;:740},&quot;flavour&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;maracuja&quot;,&quot;pessego&quot;,&quot;manga&quot;,&quot;morango&quot;,&quot;tangerina&quot;,&quot;coco&quot;,&quot;framboesa&quot;,&quot;cereja&quot;,&quot;goiaba&quot;],&quot;default&quot;:&quot;maracuja&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;lang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pt&quot;,&quot;en&quot;],&quot;default&quot;:&quot;pt&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;pct&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[100,70,50,30],&quot;default&quot;:100,&quot;tsType&quot;:&quot;number&quot;},&quot;size&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[200,500,1000],&quot;default&quot;:1000,&quot;tsType&quot;:&quot;number&quot;}}">
 const DATA = {
   maracuja:  { pt:'Maracujá',  en:'Passion fruit', accent:'#F2D94B', liq:['#F9BC3A','#F0951E','#C85E10'], seeds:1 },
   pessego:   { pt:'Pêssego',   en:'Peach',         accent:'#F9906F', liq:['#F2BE85','#E2A05A','#C97B33'] },
@@ -219,11 +219,13 @@ class Component extends DCLogic {
     const f = DATA[slug] || DATA.maracuja;
     const lang = this.props.lang === 'en' ? 'en' : 'pt';
     const pct = this.props.pct || 100;
+    const size = Number(this.props.size) || 1000;
+    const sizeLabel = size >= 1000 ? '1 L' : size + ' ml';
     const name = f[lang];
     const u = (lang === 'en' ? 'CONCENTRATE · ' + f.en : 'CONCENTRADO DE ' + f.pt).toUpperCase();
     this._txt = {
       conc: u, name,
-      fresh: lang === 'en' ? pct + '% fresh fruit · 1 L' : pct + '% fruta fresca · 1 L'
+      fresh: (lang === 'en' ? pct + '% fresh fruit · ' : pct + '% fruta fresca · ') + sizeLabel
     };
     Promise.resolve().then(() => this.paint());
     return {

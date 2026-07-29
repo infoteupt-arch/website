@@ -64,32 +64,34 @@
     <div style="max-width:1360px;margin:0 auto;padding:26px clamp(20px,5vw,64px) 0;font-size:11px;font-weight:500;letter-spacing:0.2em;text-transform:uppercase">
       <a href="produtos.dc.html" data-t="crumb" style="color:rgba(246,241,231,0.6);text-decoration:none" style-hover="color:#D8BD8A">Produtos</a>
       <span style="padding:0 10px;color:#B08D57">/</span>
-      <span style="color:#B08D57">Pêssego</span>
+      <span style="color:#B08D57"><span data-t="fr.pessego">Pêssego</span></span>
     </div>
   </div>
 
   <section style="max-width:1360px;margin:0 auto;padding:clamp(20px,3vw,40px) clamp(20px,5vw,64px) clamp(56px,7vw,96px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(32px,5vw,80px);align-items:start">
     <div style="position:sticky;top:100px;display:flex;flex-direction:column;align-items:center">
-      <dc-import name="Bottle" flavour="pessego" pct="{{ pct }}" hint-size="100%,100%" style="display:block;width:clamp(152px,20vw,300px);height:clamp(409px,53.8vw,808px)"></dc-import>
+      <div data-bscale style="display:flex;justify-content:center;width:100%;transform-origin:bottom center;transition:transform 0.5s cubic-bezier(0.16,1,0.3,1)">
+        <dc-import name="Bottle" flavour="pessego" lang="{{ lang }}" pct="{{ pct }}" size="{{ size }}" hint-size="100%,100%" style="display:block;width:clamp(152px,20vw,300px);height:clamp(409px,53.8vw,808px)"></dc-import>
+      </div>
       <div class="teu-noprint" style="margin-top:30px;display:flex;flex-wrap:wrap;gap:7px;justify-content:center">
-        <a href="produto-maracuja.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F2D94B;display:inline-block"></span>Maracujá</a>
-        <a href="produto-pessego.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.6);background:rgba(176,141,87,0.1);font-size:11px;font-weight:400;letter-spacing:0.06em;color:#F6F1E7;text-decoration:none"><span style="width:7px;height:7px;background:#F9906F;display:inline-block"></span>Pêssego</a>
-        <a href="produto-manga.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F0B323;display:inline-block"></span>Manga</a>
-        <a href="produto-morango.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#C94F56;display:inline-block"></span>Morango</a>
-        <a href="produto-tangerina.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F2670D;display:inline-block"></span>Tangerina</a>
-        <a href="produto-coco.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#CBB89A;display:inline-block"></span>Coco</a>
-        <a href="produto-framboesa.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#D61F3F;display:inline-block"></span>Framboesa</a>
-        <a href="produto-cereja.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#A02A3C;display:inline-block"></span>Cereja</a>
-        <a href="produto-goiaba.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#D96A75;display:inline-block"></span>Goiaba</a>
+        <a href="produto-maracuja.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F2D94B;display:inline-block"></span><span data-t="fr.maracuja">Maracujá</span></a>
+        <a href="produto-pessego.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.6);background:rgba(176,141,87,0.1);font-size:11px;font-weight:400;letter-spacing:0.06em;color:#F6F1E7;text-decoration:none"><span style="width:7px;height:7px;background:#F9906F;display:inline-block"></span><span data-t="fr.pessego">Pêssego</span></a>
+        <a href="produto-manga.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F0B323;display:inline-block"></span><span data-t="fr.manga">Manga</span></a>
+        <a href="produto-morango.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#C94F56;display:inline-block"></span><span data-t="fr.morango">Morango</span></a>
+        <a href="produto-tangerina.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#F2670D;display:inline-block"></span><span data-t="fr.tangerina">Tangerina</span></a>
+        <a href="produto-coco.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#CBB89A;display:inline-block"></span><span data-t="fr.coco">Coco</span></a>
+        <a href="produto-framboesa.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#D61F3F;display:inline-block"></span><span data-t="fr.framboesa">Framboesa</span></a>
+        <a href="produto-cereja.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#A02A3C;display:inline-block"></span><span data-t="fr.cereja">Cereja</span></a>
+        <a href="produto-goiaba.dc.html" style="display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid rgba(176,141,87,0.18);background:transparent;font-size:11px;font-weight:400;letter-spacing:0.06em;color:rgba(246,241,231,0.72);text-decoration:none" style-hover="border-color:rgba(176,141,87,0.5);color:#F6F1E7"><span style="width:7px;height:7px;background:#D96A75;display:inline-block"></span><span data-t="fr.goiaba">Goiaba</span></a>
       </div>
     </div>
 
     <div>
       <div data-t="p.eyebrow" style="font-size:11px;font-weight:500;letter-spacing:0.4em;text-transform:uppercase;color:#B08D57;margin-bottom:20px">Concentrado premium</div>
-      <h1 style="margin:0;font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-0.015em;color:#F6F1E7">Pêssego</h1>
+      <h1 style="margin:0;font-family:'DM Serif Display',Georgia,serif;font-weight:400;font-size:clamp(40px,5.4vw,72px);line-height:1.02;letter-spacing:-0.015em;color:#F6F1E7"><span data-t="fr.pessego">Pêssego</span></h1>
       <div style="display:flex;align-items:center;gap:14px;margin:22px 0 26px">
         <div style="width:56px;height:2px;background:#F9906F"></div>
-        <div data-t="p.sub" style="font-size:12px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(246,241,231,0.64)">Concentrado de pêssego · 1 L</div>
+        <div data-t="p.sub" style="font-size:12px;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:rgba(246,241,231,0.64)">Concentrado de pêssego · 200 ml · 500 ml · 1 L</div>
       </div>
       <p data-t="p.note" style="margin:0;max-width:56ch;font-size:16.5px;font-weight:300;line-height:1.8;color:rgba(246,241,231,0.68)">Pêssego amarelo maduro, de aroma floral e doçura redonda com acidez discreta. Corpo aveludado que segura bem gin, espumante e chá gelado.</p>
 
@@ -103,9 +105,19 @@
         </div>
       </div>
 
+      <div style="margin-top:26px">
+        <div data-t="p.size" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.6);margin-bottom:14px">Tamanho da garrafa</div>
+        <div style="display:flex;max-width:400px;border:1px solid rgba(176,141,87,0.3)">
+        <button type="button" data-size="200" style="flex:1;min-width:74px;padding:14px 10px;background:transparent;border:none;border-right:1px solid rgba(176,141,87,0.3);color:rgba(246,241,231,0.65);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s,color 0.25s">200 ml</button>
+        <button type="button" data-size="500" style="flex:1;min-width:74px;padding:14px 10px;background:transparent;border:none;border-right:1px solid rgba(176,141,87,0.3);color:rgba(246,241,231,0.65);font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s,color 0.25s">500 ml</button>
+        <button type="button" data-size="1000" style="flex:1;min-width:74px;padding:14px 10px;background:#B08D57;border:none;border-right:none;color:#000;font-family:inherit;font-size:12px;font-weight:600;letter-spacing:0.14em;cursor:pointer;transition:background 0.25s,color 0.25s">1 L</button>
+        </div>
+      </div>
+
       <div style="margin-top:26px;display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 16px">
         <div style="font-family:'DM Serif Display',Georgia,serif;font-size:clamp(28px,3vw,40px);color:#D8BD8A;line-height:1"><span data-n="price">€13,50</span><span style="font-size:15px;color:rgba(246,241,231,0.6)"> / L</span></div>
-        <div data-t="p.vat" style="font-size:13px;font-weight:300;color:rgba(246,241,231,0.6)">Preço indicativo, sem IVA · encomenda mínima 5 L</div>
+        <div style="font-size:13px;font-weight:300;color:rgba(246,241,231,0.6)"><span data-n="unit" style="color:#D8BD8A;font-weight:500">€13,50</span> <span data-t="p.unit">por garrafa de 1 L</span></div>
+        <div data-t="p.vat" style="flex-basis:100%;font-size:13px;font-weight:300;color:rgba(246,241,231,0.6)">Preços indicativos, sem IVA · encomenda mínima 5 L (25 × 200 ml, 10 × 500 ml ou 5 × 1 L)</div>
       </div>
 
       <div style="margin-top:34px;padding-top:26px;border-top:1px solid rgba(176,141,87,0.2)">
@@ -135,7 +147,7 @@
         </div>
         <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:20px">
           <div data-t="p.fmt" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.6);margin-bottom:10px">Formato</div>
-          <div data-t="p.fmtv" style="font-size:15px;font-weight:400;color:#F6F1E7">Vidro 1 L, fecho mecânico</div>
+          <div data-n="fmt" style="font-size:15px;font-weight:400;color:#F6F1E7">Vidro 1 L, fecho mecânico</div>
         </div>
         <div style="background:#000;box-shadow:0 0 0 1px rgba(176,141,87,0.16);padding:20px">
           <div data-t="p.cons" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.6);margin-bottom:10px">Conservação</div>
@@ -170,11 +182,11 @@
       <div class="teu-noprint" style="margin-top:40px;padding-top:26px;border-top:1px solid rgba(176,141,87,0.18);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap">
         <a href="produto-maracuja.dc.html" style="text-decoration:none">
           <div data-t="p.prev" style="font-size:11px;font-weight:600;letter-spacing:0.26em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:8px">← Anterior</div>
-          <div style="font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#D8BD8A">Maracujá</div>
+          <div style="font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#D8BD8A"><span data-t="fr.maracuja">Maracujá</span></div>
         </a>
         <a href="produto-manga.dc.html" style="text-decoration:none;text-align:right">
           <div data-t="p.next" style="font-size:11px;font-weight:600;letter-spacing:0.26em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:8px">Seguinte →</div>
-          <div style="font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#D8BD8A">Manga</div>
+          <div style="font-family:'DM Serif Display',Georgia,serif;font-size:20px;color:#D8BD8A"><span data-t="fr.manga">Manga</span></div>
         </a>
       </div>
     </div>
@@ -188,7 +200,7 @@
           <div style="width:4px;height:4px;background:#B08D57;transform:rotate(45deg)"></div>
           <div style="width:30px;height:1px;background:rgba(176,141,87,0.5)"></div>
         </div>
-        <div data-t="foot.tag" style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:16px;color:rgba(246,241,231,0.64)">Fruta fresca, feita bebida.</div>
+        <div data-t="foot.tag" style="font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:16px;color:rgba(246,241,231,0.64)">Fruta fresca à medida.</div>
       </div>
       <div>
         <div data-t="foot.nav" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:18px">Navegação</div>
@@ -202,9 +214,9 @@
       <div>
         <div data-t="foot.range" style="font-size:11px;font-weight:600;letter-spacing:0.32em;text-transform:uppercase;color:rgba(246,241,231,0.56);margin-bottom:18px">Gama</div>
         <div style="display:grid;gap:11px">
-          <a href="produto-maracuja.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Maracujá</a>
-          <a href="produto-pessego.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Pêssego</a>
-          <a href="produto-manga.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A">Manga</a>
+          <a href="produto-maracuja.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A"><span data-t="fr.maracuja">Maracujá</span></a>
+          <a href="produto-pessego.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A"><span data-t="fr.pessego">Pêssego</span></a>
+          <a href="produto-manga.dc.html" style="font-size:14px;font-weight:300;color:rgba(246,241,231,0.7);text-decoration:none" style-hover="color:#D8BD8A"><span data-t="fr.manga">Manga</span></a>
           <a href="produtos.dc.html" data-t="foot.all" style="font-size:14px;font-weight:300;color:#D8BD8A;text-decoration:none" style-hover="color:#F6F1E7">Ver todos →</a>
         </div>
       </div>
@@ -233,26 +245,29 @@ const D = {"30":{"price":"6,50","ing":{"pt":"Água (58%), pêssego fresco (30%),
 const SERVE = {"pt":["Bellini com espumante bem frio","Iced tea de pêssego, hortelã e limão","Whisky sour com um toque de pêssego"],"en":["Bellini with well-chilled sparkling wine","Peach iced tea with mint and lemon","Whisky sour with a touch of peach"]};
 const EN = {
   'nav.home':'Home','nav.products':'Products','nav.about':'About','nav.orders':'Orders','nav.cta':'Request a quote','crumb':'Products',
-  'p.eyebrow':'Premium concentrate','p.sub':"Concentrate of peach · 1 L",
-  'p.note':"Ripe yellow peach — floral on the nose, round sweetness, discreet acidity. A velvety body that carries gin, sparkling wine and iced tea.",
-  'p.strength':'Fruit content','p.vat':'Indicative price, excl. VAT · 5 L minimum order',
+  'p.eyebrow':'Premium concentrate','p.sub':"Peach concentrate · 200 ml · 500 ml · 1 L",
+  'p.note':"Ripe yellow peach — floral on the nose, roundly sweet, gently tart. A velvety body that carries gin, sparkling wine and iced tea.",
+  'p.strength':'Fruit content','p.size':'Bottle size','p.unit':'per 1 L bottle',
+  'p.vat':'Indicative prices, excl. VAT · 5 L minimum order (25 × 200 ml, 10 × 500 ml or 5 × 1 L)',
   'p.ing':'Ingredients','p.nut':'Nutritional declaration','p.per':'per 100 ml',
   'n.e':'Energy','n.2':'Fat','n.3':'of which saturates','n.4':'Carbohydrate','n.5':'of which sugars','n.6':'Fibre','n.7':'Protein','n.salt':'Salt',
-  'p.dil':'Suggested dilution','p.fmt':'Format','p.fmtv':'1 L glass, swing top','p.cons':'Storage','p.consv':'Always refrigerated. Unopened up to 2 months; once opened, 7 days.','p.lot':'Batch & best before','p.lotv':'Printed on the cap',
+  'p.dil':'Suggested dilution','p.fmt':'Format','p.cons':'Storage','p.consv':'Keep refrigerated at all times. Unopened, up to 2 months; once opened, 7 days.','p.lot':'Batch & best before','p.lotv':'Printed on the cap',
   'p.serve':'Serving suggestions','sv.0':"Bellini with well-chilled sparkling wine",'sv.1':"Peach iced tea with mint and lemon",'sv.2':"Whisky sour with a touch of peach",
   'tag.1':'Gluten free','tag.2':'Lactose free','tag.3':'No preservatives','tag.4':'Custom label',
   'p.cta1':'Order this product','p.prev':'← Previous','p.next':'Next →',
-  'foot.tag':'Fresh fruit, made drinkable.','foot.nav':'Navigation','foot.range':'Range','foot.contact':'Contact','foot.all':'See all →','foot.made':'Made in Lisbon'
+  'fr.maracuja':'Passion fruit','fr.pessego':'Peach','fr.manga':'Mango','fr.morango':'Strawberry','fr.tangerina':'Tangerine','fr.coco':'Coconut','fr.framboesa':'Raspberry','fr.cereja':'Cherry','fr.goiaba':'Guava',
+  'foot.tag':'Fresh fruit, made to measure.','foot.nav':'Navigation','foot.range':'Range','foot.contact':'Contact','foot.all':'See all →','foot.made':'Made in Lisbon'
 };
 
 const fmt = (v, en) => v >= 10 ? String(v) : (en ? v.toFixed(1) : v.toFixed(1).replace('.', ','));
 
 class Component extends DCLogic {
-  state = { lang: 'pt', pct: 100 };
+  state = { lang: 'pt', pct: 100, size: 1000 };
   componentDidMount() {
     let l = 'pt';
     try { if (localStorage.getItem('teu-lang') === 'en') l = 'en'; } catch (e) {}
     document.querySelectorAll('[data-pct]').forEach(b => b.addEventListener('click', () => this.setState({ pct: Number(b.getAttribute('data-pct')) })));
+    document.querySelectorAll('[data-size]').forEach(b => b.addEventListener('click', () => this.setState({ size: Number(b.getAttribute('data-size')) })));
     if (l !== this.state.lang) this.setState({ lang: l }); else this.apply();
   }
   componentDidUpdate() { this.apply(); }
@@ -271,6 +286,21 @@ class Component extends DCLogic {
     set('ing', en ? d.ing.en : d.ing.pt);
     set('e', d.n[0] + ' kJ / ' + d.n[1] + ' kcal');
     [2, 3, 4, 5, 6, 7].forEach(i => set(String(i), fmt(d.n[i], en) + ' g'));
+    const size = this.state.size, litres = size / 1000;
+    const sizeLabel = size >= 1000 ? '1 L' : size + ' ml';
+    const perL = parseFloat(d.price.replace(',', '.'));
+    const unit = (Math.round(perL * litres * 20) / 20).toFixed(2);
+    set('unit', '€' + (en ? unit : unit.replace('.', ',')));
+    set('fmt', (en ? 'Glass ' : 'Vidro ') + sizeLabel + (en ? ', swing top' : ', fecho mecânico'));
+    const ul = document.querySelector('[data-t="p.unit"]');
+    if (ul) ul.textContent = en ? 'per ' + sizeLabel + ' bottle' : 'por garrafa de ' + sizeLabel;
+    const bs = document.querySelector('[data-bscale]');
+    if (bs) bs.style.transform = 'scale(' + (size === 1000 ? 1 : size === 500 ? 0.84 : 0.68) + ')';
+    document.querySelectorAll('[data-size]').forEach(b => {
+      const on = Number(b.getAttribute('data-size')) === size;
+      b.style.background = on ? '#B08D57' : 'transparent';
+      b.style.color = on ? '#000' : 'rgba(246,241,231,0.65)';
+    });
     document.querySelectorAll('[data-pct]').forEach(b => {
       const on = Number(b.getAttribute('data-pct')) === this.state.pct;
       b.style.background = on ? '#B08D57' : 'transparent';
@@ -281,7 +311,8 @@ class Component extends DCLogic {
   renderVals() {
     const en = this.state.lang === 'en';
     return {
-      pct: this.state.pct,
+      lang: this.state.lang,
+      pct: this.state.pct, size: this.state.size,
       setPt: () => this.set('pt'), setEn: () => this.set('en'),
       ptColor: en ? 'rgba(246,241,231,0.6)' : '#B08D57',
       enColor: en ? '#B08D57' : 'rgba(246,241,231,0.6)'
