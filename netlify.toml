@@ -1,7 +1,7 @@
 # TEU — Netlify configuration
-# Static site, no build step. Pretty URLs are exact-match rewrites only:
-# a wildcard like "/produto/:slug" would also capture "/produto/maracuja.dc.html"
-# and rewrite it to ".dc.html.dc.html", which 404s. Do not reintroduce it.
+# Static site, no build step, no dependencies. Every page is a FILE AT THE ROOT,
+# so it is served even if this file is ignored entirely. The rules below only add
+# the pretty URLs on top; nothing depends on them.
 
 [build]
   publish = "."
@@ -33,48 +33,95 @@
 
 [[redirects]]
   from = "/produto/maracuja"
-  to = "/produto/maracuja.dc.html"
+  to = "/produto-maracuja.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/pessego"
-  to = "/produto/pessego.dc.html"
+  to = "/produto-pessego.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/manga"
-  to = "/produto/manga.dc.html"
+  to = "/produto-manga.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/morango"
-  to = "/produto/morango.dc.html"
+  to = "/produto-morango.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/tangerina"
-  to = "/produto/tangerina.dc.html"
+  to = "/produto-tangerina.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/coco"
-  to = "/produto/coco.dc.html"
+  to = "/produto-coco.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/framboesa"
-  to = "/produto/framboesa.dc.html"
+  to = "/produto-framboesa.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/cereja"
-  to = "/produto/cereja.dc.html"
+  to = "/produto-cereja.dc.html"
   status = 200
 
 [[redirects]]
   from = "/produto/goiaba"
-  to = "/produto/goiaba.dc.html"
+  to = "/produto-goiaba.dc.html"
   status = 200
+
+# Old subfolder URLs (pre-flattening) keep working
+
+[[redirects]]
+  from = "/produto/maracuja.dc.html"
+  to = "/produto-maracuja.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/pessego.dc.html"
+  to = "/produto-pessego.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/manga.dc.html"
+  to = "/produto-manga.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/morango.dc.html"
+  to = "/produto-morango.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/tangerina.dc.html"
+  to = "/produto-tangerina.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/coco.dc.html"
+  to = "/produto-coco.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/framboesa.dc.html"
+  to = "/produto-framboesa.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/cereja.dc.html"
+  to = "/produto-cereja.dc.html"
+  status = 301
+
+[[redirects]]
+  from = "/produto/goiaba.dc.html"
+  to = "/produto-goiaba.dc.html"
+  status = 301
 
 [[headers]]
   for = "/*"

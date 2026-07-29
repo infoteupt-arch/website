@@ -9,7 +9,7 @@ HTML estático, sem build step, sem dependências de npm.
 | --- | --- | --- |
 | `index.dc.html` | `/` | Página inicial — hero com garrafas clicáveis, gama, processo |
 | `produtos.dc.html` | `/produtos` | Gama completa: 9 concentrados + cocktails + shots + preços |
-| `produto/<sabor>.dc.html` | `/produto/<sabor>` | Ficha de cada sabor, com selector de concentração |
+| `produto-<sabor>.dc.html` | `/produto/<sabor>` | Ficha de cada sabor, com selector de concentração |
 | `sobre.dc.html` | `/sobre` | História, valores, equipa, segurança alimentar, clientes |
 | `encomendas.dc.html` | `/encomendas` | Contactos + formulário (FormSubmit → infoteupt@gmail.com) |
 | `catalogo.dc.html` | `/catalogo` | Catálogo imprimível / PDF de toda a gama |
@@ -19,7 +19,7 @@ Sabores: `maracuja`, `pessego`, `manga`, `morango`, `tangerina`, `coco`, `frambo
 ## Ficheiros de apoio
 
 - `site.js` — fonte única dos dados de todos os sabores (nutrição, ingredientes, preços, notas PT/EN). As páginas de produto e o catálogo têm estes valores escritos no próprio HTML (para carregarem instantaneamente), por isso ao alterar aqui é preciso alterar também na página correspondente — ou pedir a regeneração.
-- `Bottle.dc.html` — garrafa TEU desenhada em SVG (vidro, arame, tampa, rótulo por sabor). Existe uma cópia em `produto/` porque as páginas de produto estão numa subpasta.
+- `Bottle.dc.html` — garrafa TEU desenhada em SVG (vidro, arame, tampa, rótulo por sabor), reproduzindo o rótulo real 310 × 115 mm. Uma única cópia, na raiz.
 - `assets/photo-1.jpg`, `assets/photo-2.jpg` — fotografias otimizadas. As duas imagens usadas em `index` e `sobre` estão **embutidas** (data URI) nessas páginas, para nunca falharem no alojamento; os ficheiros ficam aqui como originais de trabalho.
 - `support.js` — runtime das páginas. Não editar.
 - `index.html` — entrada universal (redireciona para `index.dc.html`), para o caso de o alojamento não usar `netlify.toml`.
@@ -31,14 +31,15 @@ Sabores: `maracuja`, `pessego`, `manga`, `morango`, `tangerina`, `coco`, `frambo
 3. Build command: *(vazio)* · Publish directory: `.`
 4. `netlify.toml` já configura os URLs limpos (`/`, `/produtos`, `/sobre`, `/encomendas`, `/catalogo`, `/produto/<sabor>`).
 
-> **Não usar redirects com wildcard para os produtos.** Uma regra `from = "/produto/:slug"` também captura
-> `/produto/maracuja.dc.html` e reescreve para `.dc.html.dc.html`, o que devolve *Page not found*.
-> As regras têm de ser exatas, uma por sabor — é assim que está no `netlify.toml`.
+> **Todas as páginas são ficheiros na raiz.** Não há subpastas de páginas: uma ficha de produto é
+> `produto-maracuja.dc.html`, servida na raiz do site. Assim o site funciona mesmo que o
+> `netlify.toml` seja ignorado — os redirects apenas acrescentam os URLs curtos
+> (`/produto/maracuja`) por cima. Não voltar a pôr as páginas de produto numa subpasta.
 
 ## Deploy — GitHub Pages
 
 Funciona sem configuração: `index.html` redireciona para a página inicial. Os URLs
-ficam com `.dc.html` (ex.: `/produto/maracuja.dc.html`) porque o GitHub Pages não
+ficam com `.dc.html` (ex.: `/produto-maracuja.dc.html`) porque o GitHub Pages não
 suporta rewrites.
 
 ## Idioma
@@ -55,5 +56,7 @@ Links `Pedir este produto` passam `?produto=<sabor>` e pré-selecionam o produto
 ## A confirmar
 
 - Preços por litro são **indicativos** e foram estimados — confirmar antes de publicar.
+- Se uma página não abrir depois do deploy, confirmar no GitHub que **todos** os ficheiros
+  `produto-*.dc.html`, `Bottle.dc.html` e `support.js` estão no repositório, na raiz.
 - Cargo de Leonardo Cortez indicado como *Co-fundador & Operações*.
 - Afirmações de HACCP / rastreabilidade / cadeia de frio devem corresponder à realidade documentada.
